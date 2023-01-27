@@ -13,12 +13,14 @@ public class StringProducerService {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String message){
-        kafkaTemplate.send("srt-topic", message).whenComplete((result, exception) -> {
+        log.info("Sending message {}", message);
+        kafkaTemplate.send("srt-topic", message);
+/*                .whenComplete((result, exception) -> {
             if (exception != null) {
                 log.error("Erro ao enviar mensagem para o kafka: ", exception);
             } else {
                 log.info("Mensagem enviada com sucesso: {}", result);
             }
-        });
+        });*/
     }
 }
